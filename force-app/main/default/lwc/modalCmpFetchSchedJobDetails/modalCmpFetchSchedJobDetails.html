@@ -1,0 +1,41 @@
+<!--
+  @description       : 
+  @author            : 
+  @group             : 
+  @last modified on  : 04-17-2024
+  @last modified by  : 
+-->
+<template>
+   <!-- <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
+        <div class="slds-col">
+            <lightning-datatable data={scheduledClassesData} columns={columns} key-field="ApexClassId" onrowaction={callRowAction}>>
+            </lightning-datatable>
+        </div>
+    </div> -->
+
+
+        <lightning-modal-header label={modalHeader}></lightning-modal-header>
+        <!---<lightning-spinner if:false={scheduledJobDetails}> -->
+            <lightning-modal-body>
+                <template lwc:if={scheduledJobDetails}>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
+                        <div class="slds-col">
+                            <lightning-datatable data={scheduledJobDetails} columns={columns} key-field="ApexClassId" hide-checkbox-column="true">
+                            </lightning-datatable>
+                        </div>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="demo-only" style="padding:0.5rem;background:#16325c">
+                        <div class="slds-text-color_inverse">{noJobsMessage}</div>
+                    </div>
+                </template>
+            </lightning-modal-body>
+        <!--</lightning-spinner> -->
+        <lightning-modal-footer>
+          <div class="slds-m-top_small slds-align_absolute-center">
+              <lightning-button variant="Neutral" label="Close" class="slds-m-left_x-small" onclick={handleClose}>
+              </lightning-button>
+          </div>
+      </lightning-modal-footer>
+</template>

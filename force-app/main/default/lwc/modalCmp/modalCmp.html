@@ -1,0 +1,15 @@
+<!--
+  @description       : 
+  @author            : 
+  @group             : 
+  @last modified on  : 04-17-2024
+  @last modified by  : 
+-->
+<template>
+  <template lwc:if={scheduleJobFlag}>
+    <c-modal-cmp-schedule-apex-cls scheduler-cls-details={content} oncallparentmodal={handleClose}></c-modal-cmp-schedule-apex-cls>
+  </template>
+  <template lwc:if={getScheduleDetailsFlag}>
+    <c-modal-cmp-fetch-sched-job-details scheduler-content={content} apex-class-param={apexClass} oncallparentmodal={handleClose}></c-modal-cmp-fetch-sched-job-details>
+  </template>
+</template>
