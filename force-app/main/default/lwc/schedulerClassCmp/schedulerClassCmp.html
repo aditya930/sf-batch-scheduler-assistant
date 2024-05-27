@@ -2,13 +2,13 @@
   @description       : 
   @author            : 
   @group             : 
-  @last modified on  : 04-23-2024
+  @last modified on  : 05-10-2024
   @last modified by  : Aditya M
 -->
 <template>
-    <lightning-card title="Scheduled Classes" icon-name="utility:connected_apps">
+   <!-- <lightning-card title="Scheduled Classes" icon-name="utility:connected_apps">
         <lightning-tabset>
-            <lightning-tab label="Schedule Information" icon-name=standard:asset_downtime_period>
+            <lightning-tab label="Schedule Information" icon-name=standard:asset_downtime_period> -->
                 <div class="slds-grid slds-grid_vertical slds-grid_align-spread">
                     <div class="flex-box">
                         <div class="slds-col"><!--RECORDS PER PAGE-->
@@ -41,7 +41,7 @@
                         <div class="slds-col"></div>
                         <!--PAGE NAVIGATION-->
                         <div class="slds-col">
-                            <div style={paginationVisibility}>                 
+                            <div>                 
                                 <div class="slds-col slds-p-bottom_xx-small">                     
                                     <span>
                                         <lightning-button-icon icon-name="utility:chevronleft" variant="bare" size="medium" alternative-text="Previous Page" onclick={previousPage}></lightning-button-icon>
@@ -58,17 +58,17 @@
                         </div>      
                     </div>
                 </div>
-            </lightning-tab>
+            <!-- </lightning-tab>
             <lightning-tab label="Batch Class Run" icon-name=standard:asset_audit>
                 
             </lightning-tab>
-        </lightning-tabset>
-        <template if:true={schedulePopup}>
+        </lightning-tabset> -->
+        <!-- <template if:true={schedulePopup}>
             <lightning-modal-header label="My Modal Heading"></lightning-modal-header>
             <lightning-modal-body> Content: {content} </lightning-modal-body>
             <lightning-modal-footer>
                 <lightning-button label="OK" onclick={handleOkay}></lightning-button>
             </lightning-modal-footer>
-        </template>
-    </lightning-card>
+        </template> -->
+    <!--</lightning-card> -->
 </template>

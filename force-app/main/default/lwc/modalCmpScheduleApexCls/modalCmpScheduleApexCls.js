@@ -39,7 +39,6 @@ export default class ModalCmpScheduleApexCls extends LightningModal {
             return validSoFar && inputCmp.checkValidity();
         }, true);
         if (allValid) {
-            this.trst = '';
             //alert('All form entries look valid. Ready to submit!');
             this.scheduleJobName = this.refs.jobNameRef.value;
             this.cronExpression = this.refs.cronExpRef.value;
@@ -48,12 +47,10 @@ export default class ModalCmpScheduleApexCls extends LightningModal {
 
             scheduleApexClass({ scheduleJobName: this.scheduleJobName, cronExpression: this.cronExpression, apexClassName: apexClassParam })
                 .then(result => {
-                    console.log('result==>>', result);
-
                     this.toastTitle = 'Success!';
-                    toastMessage = 'The class is successfully scheduled';
-                    toastVariant = 'success';
-                    toastMode = 'dismissable';
+                    this.toastMessage = 'The class is successfully scheduled';
+                    this.toastVariant = 'success';
+                    this.toastMode = 'dismissable';
                     this.showToastMessage(this.toastTitle, this.toastMessage, this.toastVariant, this.toastMode);
                 })
                 .catch(error => {

@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : Aditya M
+  @group             : 
+  @last modified on  : 05-07-2024
+  @last modified by  : Aditya M
+-->
+<template>
+    <lightning-card title="Scheduled Classes" icon-name="utility:connected_apps">
+        <lightning-tabset>
+            <lightning-tab label="Schedule Information" icon-name=standard:asset_downtime_period>
+                <c-scheduler-class-cmp scheduled-data={scheduleandBatchClassesData}></c-scheduler-class-cmp>
+            </lightning-tab>
+            <lightning-tab label="Batch Class Run" icon-name=standard:asset_audit>
+                <c-batch-classes-cmp batch-data={scheduleandBatchClassesData}></c-batch-classes-cmp>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+    
+    <!--<c-batch-classes-cmp batch-data={batchClassData}></c-batch-classes-cmp> -->
+</template>

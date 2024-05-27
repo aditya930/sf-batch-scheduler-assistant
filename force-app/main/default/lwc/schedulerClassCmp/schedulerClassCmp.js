@@ -1,5 +1,5 @@
-import { LightningElement, wire, track } from 'lwc';
-import fetchSchedulerClasses from '@salesforce/apex/SchedulerBatchUtils.retrieveScheduledClasses';
+import { LightningElement, api } from 'lwc';
+//import fetchSchedulerClasses from '@salesforce/apex/SchedulerBatchUtils.retrieveInterfaceClasses';
 import ModalCmp from 'c/modalCmp'
 
 const DELAY = 300;
@@ -16,6 +16,36 @@ export default class SchedulerClassCmp extends LightningElement{
     totalPages;
     totalRecords = 0;
     pageNumber = 1
+
+    @api
+    get scheduledData(){
+        return this.scheduledClassesData
+    }
+
+    set scheduledData(scheduledData){
+        this.scheduledClassesData = scheduledData.filter(item => item.InterfaceName === 'Schedulable');
+        this.setDataForPagination();
+    }
+
+    setDataForPagination(){
+        this.allRecordsHolder = [...this.scheduledClassesData]
+        this.recordsToDisplay = this.scheduledClassesData
+        this.pageSize = this.pageSizeOptions[0]
+        this.totalRecords = this.scheduledClassesData.length
+        this.paginationHelper();
+    }
+
+    handleRecordsPerPage(event){
+        this.pageSize = event.target.value;
+        this.paginationHelper();
+    }
+
+    handlePageNumberChange(event){
+        if(event.keyCode === 13){
+            this.pageNumber = event.target.value;
+            this.paginationHelper();
+        }
+    }
 
     connectedCallback(){
 
@@ -47,9 +77,7 @@ export default class SchedulerClassCmp extends LightningElement{
     }
 
     async callRowAction(event){
-        const recId = event.detail.row.Id;
         const actionName = event.detail.action.name;
-        console.log('actionName===>>>' + actionName)
 
         const result = await ModalCmp.open({
             size: 'small',
@@ -58,7 +86,7 @@ export default class SchedulerClassCmp extends LightningElement{
         });
     }
 
-    @wire(fetchSchedulerClasses, {interfaceName: 'Schedulable'})
+    /*@wire(fetchSchedulerClasses, {interfaceNames: '$interfaceNames'})
     wiredFetchScheduledClasses({error,data}){
         this.isloading = false
         if (data) {
@@ -70,6 +98,8 @@ export default class SchedulerClassCmp extends LightningElement{
                 }
                 return { ...item, DurableId: durableId };
               });
+
+              //console.log('this.scheduledClassesData ===>>', this.scheduledClassesData )
               
               this.allRecordsHolder = [...this.scheduledClassesData]
               this.recordsToDisplay = this.scheduledClassesData
@@ -79,7 +109,7 @@ export default class SchedulerClassCmp extends LightningElement{
         } else if (error) {
             // Handle error 
         }
-    }
+    }*/
 
     previousPage() {
         this.pageNumber = this.pageNumber - 1;
@@ -115,7 +145,7 @@ export default class SchedulerClassCmp extends LightningElement{
     }
 
     paginationHelper(){
-        console.log('this.scheduledClassesData===>>', JSON.stringify(this.scheduledClassesData))
+        //console.log('this.scheduledClassesData===>>', JSON.stringify(this.scheduledClassesData))
         this.recordsToDisplay = []
         this.totalPages = Math.ceil(this.totalRecords/this.pageSize)
         if(this.pageNumber <=1){

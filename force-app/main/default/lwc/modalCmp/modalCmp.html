@@ -2,8 +2,8 @@
   @description       : 
   @author            : 
   @group             : 
-  @last modified on  : 04-17-2024
-  @last modified by  : 
+  @last modified on  : 05-08-2024
+  @last modified by  : Aditya M
 -->
 <template>
   <template lwc:if={scheduleJobFlag}>
@@ -11,5 +11,8 @@
   </template>
   <template lwc:if={getScheduleDetailsFlag}>
     <c-modal-cmp-fetch-sched-job-details scheduler-content={content} apex-class-param={apexClass} oncallparentmodal={handleClose}></c-modal-cmp-fetch-sched-job-details>
+  </template>
+  <template lwc:if={executeBatchFlag}>
+    <c-modal-cmp-execute-batch-job batch-class-execute-details={content} oncallparentmodal={handleClose}></c-modal-cmp-execute-batch-job>
   </template>
 </template>

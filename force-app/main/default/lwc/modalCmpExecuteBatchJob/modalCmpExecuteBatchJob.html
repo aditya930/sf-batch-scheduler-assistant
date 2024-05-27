@@ -1,0 +1,26 @@
+<!--
+  @description       : 
+  @author            : Aditya M
+  @group             : 
+  @last modified on  : 05-08-2024
+  @last modified by  : Aditya M
+-->
+<template>
+    <lightning-modal-header label={modalHeader}></lightning-modal-header>
+    <lightning-modal-body>
+        <div class="slds-p-around_small">
+            <lightning-formatted-text value={classNameFormattedText} class="batchClassNameCls">
+            </lightning-formatted-text>
+            <lightning-input type="number" label="Batch Size" value="" min="1" max="2000" required lwc:ref="batchSizeRef">
+            </lightning-input>
+        </div>  
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <div class="slds-m-top_small slds-align_absolute-center">
+            <lightning-button variant="Neutral" label="Close" class="slds-m-left_x-small" onclick={handleClose}>
+            </lightning-button>
+            <lightning-button variant="brand" class="slds-m-left_x-small" label="Execute Batch" onclick={handleBatchExecute}>
+            </lightning-button>
+        </div>
+    </lightning-modal-footer>
+</template>
